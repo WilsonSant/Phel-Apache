@@ -1,0 +1,9 @@
+services:
+  apache:
+    build:
+      context: .
+      dockerfile: DockerFile
+    volumes:
+      - ./app:/var/www/html  
+    ports:
+      - "8000:8000"

@@ -1,0 +1,7 @@
+FROM php:8.2.1-apache
+RUN apt-get update && apt-get upgrade -y && apt-get install -y git zip unzip
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ADD ./app /var/www/html/
+RUN sed -i 's/80/8000/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
+EXPOSE 8000
+CMD ["apache2-foreground"]
